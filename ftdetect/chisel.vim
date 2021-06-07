@@ -1,5 +1,5 @@
 fun! s:DetectChisel()
-    if getline(1, 100) =~# '^import chisel3'
+    if search('^import chisel3') > 0
         set filetype=chisel
     endif
 endfun
