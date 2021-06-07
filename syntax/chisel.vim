@@ -38,34 +38,32 @@ unlet! b:current_syntax
 syn case match
 syn sync minlines=200 maxlines=1000
 
-syn keyword supportFunctionChisel      poke step peek expect
-syn keyword supportLanguageChisel      IO Input Output DecoupledIO Irrevocable IrrevocableIO Decoupled QueueIO ReadyValidIO
-syn keyword supportClassChisel         Mem Reg RegInit RegEnable SyncReadMem Pipe Mux Mux1H MuxLookup MuxCase PriorityMux PriorityEncoder PriorityEncoderOH Queue Wire WireInit Counter
-syn keyword supportOtherChisel         asInput asOutput asUInt asSInt log2Ceil isPow2 log2Down log2Floor log2Up Enum Cat Fill UIntToOH
+syn keyword supportFunctionChisel      poke step peek expect reduceTree reduceLeft reduceRight reduce
+syn keyword supportLanguageChisel      IO Input Output DecoupledIO Irrevocable IrrevocableIO Decoupled QueueIO ReadyValidIO ArbiterIO
+syn keyword supportClassChisel         Mem Reg RegInit RegEnable RegNext SyncReadMem Pipe Mux Mux1H MuxLookup MuxCase PriorityMux PriorityEncoder PriorityEncoderOH Queue Wire WireInit Counter Arbiter ShiftRegister FibonacciLFSR GaloisLFSR withReset withClock withClockAndReset
+syn keyword supportOtherChisel         asInput asOutput asUInt asSInt log2Ceil isPow2 log2Down log2Floor log2Up Enum Cat Fill UIntToOH PopCount Log2 Flipped printf
 syn keyword supportModuleChisel        Module
 syn keyword variableLanguageChisel     io
+
+syn match moduleChisel /[_A-Za-z0-9$]\+\(\.io\)\@=/
+hi link moduleChisel       Function
 
 syn keyword keywordControlFlowChisel   when elsewhen otherwise switch is
 syn keyword storageTypeChisel          Vec MixedVec VecInit MixedVecInit Bundle
 syn keyword storageTypePrimitiveChisel Bool UInt SInt
 
-syn match constantLanguageChisel "\(false\|true\)\.B"
-syn match constantNumericChisel "\([-+]\d+\.[SU]\|\d+\.W\)"
-
 hi link keywordControlFlowChisel Conditional
-hi link	constantNumericChisel		Number
-hi link	constantLanguageChisel		Boolean
 
 hi link	storageTypePrimitiveChisel  Type
 hi link	storageTypeChisel           Type
 
-hi link supportFunctionChisel       Constant
+hi link supportFunctionChisel       Function
 hi link supportLanguageChisel       Constant
 hi link supportClassChisel          Constant
 hi link supportOtherChisel          Constant
 hi link supportModuleChisel         Constant
 
-hi link variableLanguageChisel     Operator
+hi link variableLanguageChisel     Special
 
 syn keyword scalaKeyword catch do else final finally for forSome if
 syn keyword scalaKeyword match return throw try while yield macro
@@ -156,10 +154,12 @@ syn match scalaCaseFollowing /\<[_\.A-Za-z0-9$]\+\>/ contained contains=scalaCap
 syn match scalaCaseFollowing /`[^`]\+`/ contained contains=scalaCapitalWord
 hi link scalaCaseFollowing Special
 
+syn keyword scalaCommonMethods filter map zip zipWithIndex fill
 syn keyword scalaKeywordModifier abstract override final lazy implicit private protected sealed null super
 syn keyword scalaSpecialFunction implicitly require
 hi link scalaKeywordModifier Function
 hi link scalaSpecialFunction Function
+hi link scalaCommonMethods Function
 
 syn keyword scalaSpecial this true false ne eq
 syn keyword scalaSpecial new nextgroup=scalaInstanceDeclaration skipwhite
