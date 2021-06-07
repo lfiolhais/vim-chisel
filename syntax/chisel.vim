@@ -38,6 +38,35 @@ unlet! b:current_syntax
 syn case match
 syn sync minlines=200 maxlines=1000
 
+syn keyword supportFunctionChisel      poke step peek expect
+syn keyword supportLanguageChisel      IO Input Output DecoupledIO Irrevocable IrrevocableIO Decoupled QueueIO ReadyValidIO
+syn keyword supportClassChisel         Mem Reg RegInit RegEnable SyncReadMem Pipe Mux Mux1H MuxLookup MuxCase PriorityMux PriorityEncoder PriorityEncoderOH Queue Wire WireInit Counter
+syn keyword supportOtherChisel         asInput asOutput asUInt asSInt log2Ceil isPow2 log2Down log2Floor log2Up Enum Cat Fill UIntToOH
+syn keyword supportModuleChisel        Module
+syn keyword variableLanguageChisel     io
+
+syn keyword keywordControlFlowChisel   when elsewhen otherwise switch is
+syn keyword storageTypeChisel          Vec MixedVec VecInit MixedVecInit Bundle
+syn keyword storageTypePrimitiveChisel Bool UInt SInt
+
+syn match constantLanguageChisel "\(false\|true\)\.B"
+syn match constantNumericChisel "\([-+]\d+\.[SU]\|\d+\.W\)"
+
+hi link keywordControlFlowChisel Conditional
+hi link	constantNumericChisel		Number
+hi link	constantLanguageChisel		Boolean
+
+hi link	storageTypePrimitiveChisel  Type
+hi link	storageTypeChisel           Type
+
+hi link supportFunctionChisel       Constant
+hi link supportLanguageChisel       Constant
+hi link supportClassChisel          Constant
+hi link supportOtherChisel          Constant
+hi link supportModuleChisel         Constant
+
+hi link variableLanguageChisel     Operator
+
 syn keyword scalaKeyword catch do else final finally for forSome if
 syn keyword scalaKeyword match return throw try while yield macro
 syn keyword scalaKeyword class trait object extends with nextgroup=scalaInstanceDeclaration skipwhite
@@ -224,35 +253,6 @@ syn match scalaAkkaFSMGotoUsing /\<using\>/
 syn match scalaAkkaFSMGotoUsing /\<goto\>/
 hi link scalaAkkaFSM PreProc
 hi link scalaAkkaFSMGotoUsing PreProc
-
-syn keyword supportFunctionChisel      poke step peek expect
-syn keyword supportLanguageChisel      IO Input Output DecoupledIO Bundle
-syn keyword supportClassChisel         Mem Reg RegInit SyncReadMem Pipe
-syn keyword supportOtherChisel         asInput asOutput asUInt asSInt
-syn keyword supportModuleChisel        Module
-syn keyword variableLanguageChisel     io
-
-syn keyword keywordControlFlowChisel   when elsewhen otherwise switch is
-syn keyword storageTypeChisel          Vec
-syn keyword storageTypePrimitiveChisel Bool UInt SInt
-
-syn match constantLanguageChisel "\(false\|true\)\.B"
-syn match constantNumericChisel "\([-+]\d+\.[SU]\|\d+\.W\)"
-
-hi link keywordControlFlowChisel Conditional
-hi link	constantNumericChisel		Number
-hi link	constantLanguageChisel		Boolean
-
-hi link	storageTypePrimitiveChisel  Type
-hi link	storageTypeChisel           Type
-
-hi link supportFunctionChisel       Constant
-hi link supportLanguageChisel       Constant
-hi link supportClassChisel          Constant
-hi link supportOtherChisel          Constant
-hi link supportModuleChisel         Constant
-
-hi link variableLanguageChisel     Operator
 
 let b:current_syntax = 'chisel'
 
